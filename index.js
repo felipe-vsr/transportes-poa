@@ -2,18 +2,18 @@
 // -----------------------------------------------------------------------------
  
 // packages
-var os=require('os');
-var cluster=require('cluster');
-var express=require('express');
-var path=require('path');
-var compression=require('compression');
+let os=require('os');
+let cluster=require('cluster');
+let express=require('express');
+let path=require('path');
+let compression=require('compression');
 
 // CLUSTER
 // -----------------------------------------------------------------------------
 
 // system
 if(cluster.isMaster)
-	for(var i=0, n=os.cpus().length; i<n; i+=1)
+	for(let i=0, n=os.cpus().length; i<n; i+=1)
 		cluster.fork();
 else
 	application();
@@ -24,7 +24,7 @@ else
 function application(){
 
   // app
-  var app=express();
+  let app=express();
 
   // result gzip
   app.use(compression());

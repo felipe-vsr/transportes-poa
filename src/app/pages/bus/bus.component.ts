@@ -39,6 +39,7 @@ export class BusComponent implements OnInit {
                 let result: any = res
                 if (!result.error) {
                     this.data = result
+                    this.modal.show('Linhas de Ônibus.', 'Aqui são exibidas as linhas de ônibus do transporte público de porto aleger. <br> Para verificar o itinerário de cada linha basta clicar na linha desejada para carregar o itinerário da mesma. <br> Apos a exibição do itinerário, é posssível abrir o mapa de cada poto da rota clicando na coluna Mapa da lista de itinerários.')
                 } else {
                     this.modal.show('Ops.', 'Tivemos problemas para consultar os dados, tente novamente por favor.')
                 }
