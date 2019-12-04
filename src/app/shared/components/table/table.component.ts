@@ -105,8 +105,12 @@ export class TableComponent implements OnInit {
 
     if (exp) {
       this.dataList = this.data.filter(function (line) {      
-        return line.nome.toLowerCase().indexOf(exp.toLowerCase()) !== -1 
-      });
+        return (
+          line.nome.toLowerCase().indexOf(exp.toLowerCase()) !== -1 ||
+          line.codigo.toLowerCase().indexOf(exp.toLowerCase()) !== -1 ||
+          line.id.toLowerCase().indexOf(exp.toLowerCase()) !== -1 
+        )
+        });
     } else {
       this.dataList = this.data
     }

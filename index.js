@@ -33,9 +33,9 @@ function application(){
   app.use(express.static(path.join(__dirname, 'src/assets')));
 
 	// spa
-	app.use(express.static(path.join(__dirname, 'dist/buslines')));
+	app.use(express.static(path.join(__dirname, 'dist/busLines')));
 	app.use("*",function(req,res){
-		res.sendFile(path.join(__dirname, 'dist/buslines/index.html'));
+		res.sendFile(path.join(__dirname, 'dist/busLines/index.html'));
 	});
 
   // listen
