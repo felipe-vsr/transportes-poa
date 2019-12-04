@@ -1,0 +1,17 @@
+<div class="container mt-5">
+    <app-table 
+        [title]="'Lotações'" 
+        [data]="data" 
+        [displayedColumns]="['id', 'codigo', 'nome']"
+        [headerColumns]="{id: 'ID', codigo: 'Código', nome: 'Nome'}"
+        (sendSelectedRow)="getItinerary($event)">
+    </app-table>
+</div>
+
+<div class="container mt-5">
+    <app-itinerary [data]="intinerary"></app-itinerary>
+</div>
+
+<app-loading [loading]="loading"></app-loading>
+
+<app-modal #modal></app-modal>

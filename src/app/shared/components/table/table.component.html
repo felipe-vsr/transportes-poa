@@ -1,0 +1,62 @@
+<div class="row mb-3">
+    <div class="col-md-6 d-flex justify-content-center">
+        <h3>{{ title }}</h3>
+    </div>
+    <div class="col-md-6 d-flex justify-content-center">
+        <div class="form-inline d-flex justify-content-between">
+            <input class="field-search form-control" type="search" [ngModel]="searchExp" (ngModelChange)="onSearchChange($event)" placeholder="Buscar..." aria-label="Search">
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr class="header">
+            <ng-container *ngFor="let header of displayedColumns">
+            <th class="title-column">{{ headerColumns[header] }}</th>
+            </ng-container>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let row of data | slice: page*itensPageNumber:calcSlice(page, itensPageNumber, itensPageNumber) > data.length ? data.length : calcSlice(page, itensPageNumber, itensPageNumber);">
+            <tr (click)="selectRow(row)" style="cursor: pointer;" [class.selected]="selectedRow === row">
+                <ng-container *ngFor="let field of displayedColumns">
+                    <td>{{ row[field] }}</td>
+                </ng-container>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+
+<nav aria-label="...">
+    <ul class="pagination d-flex justify-content-center">
+        <li class="page-item" (click)="goToPage(1)">
+            <span class="page-link">Primeira</span>
+        </li>
+
+        <ng-container *ngFor="let pageNumber of paginationButtonsList">
+            <li class="page-item" [class.active]="pageNumber == page + 1" (click)="goToPage(pageNumber)">
+                <a class="page-link">{{ pageNumber }}</a>
+                <!-- <span class="page-link"> 2 <span class="sr-only">(current)</span></span> -->
+            </li>
+        </ng-container>
+
+        <li class="page-item" (click)="goToPage(parseInt((data.length -1),itensPageNumber) + 1)">
+            <span class="page-link">Última</span>
+        </li>
+    </ul>
+</nav>
+
+<app-loading [loading]="loading"></app-loading>
+<!-- <table *ngIf="data.length > 0">
+    <tr class="header">
+        <ng-container *ngFor="let header of displayedColumns">
+        <th class="title-column">{{ headerColumns[header] }}</th>
+        </ng-container>
+    </tr>
+    <tr *ngFor="let row of data | filter : searchTerm | category : listCategoryFilter | slice: page*itensPageNumber:calcSlice(page, itensPageNumber, itensPageNumber) > data.length ? data.length : calcSlice(page, itensPageNumber, itensPageNumber);">
+        <ng-container *ngFor="let field of displayedColumns">
+            <td>{{ row[field] }}</td>
+        </ng-container>
+    </tr>
+</table> -->

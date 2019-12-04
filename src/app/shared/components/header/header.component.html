@@ -1,0 +1,10 @@
+<nav class="navbar navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand">Transporte Público - POA</a>
+        <div class="navbar-nav d-flex justify-content-center">
+            <span class="nav-item nav-link m-3" [class.active]="url === '/'" [routerLink]="['/']">Home</span>
+            <span class="nav-item nav-link m-3" [class.active]="url === '/onibus'" [routerLink]="['/onibus']">Ônibus</span>
+            <span class="nav-item nav-link m-3" [class.active]="url === '/lotacao'" [routerLink]="['/lotacao']">Lotaçôes</span>
+        </div>
+    </div>
+</nav>

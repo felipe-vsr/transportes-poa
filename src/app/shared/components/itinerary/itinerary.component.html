@@ -1,0 +1,28 @@
+<ng-container *ngIf="data">
+    <h3 class="mb-3">Itinerário da linha: {{ data?.nome }} | {{ data?.codigo }}</h3>
+
+    <div class="box-table">
+        <table class="table table-fixed">
+            <thead>
+                <tr>
+                    <th class="col-xs-3" scope="col">Ponto</th>
+                    <th class="col-xs-3" scope="col">Latitude</th>
+                    <th class="col-xs-3" scope="col">Longitude</th>
+                    <th class="col-xs-3" scope="col">Mapa</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let locality of data | keyvalue:orderByRowNum">
+                    <tr *ngIf="locality.value.lat && locality.value.lng">
+                        <td class="col-xs-3">{{ locality.key }}</td>
+                        <td class="col-xs-3">{{ locality.value.lat }}</td>
+                        <td class="col-xs-3">{{ locality.value.lng }}</td>
+                        <td class="col-xs-3" class="mapLink">
+                            <a [attr.href]="'https://www.google.com/maps/?q=' + locality.value.lat + locality.value.lng" target="_blank" rel="noopener noreferrer">Mapa</a>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
